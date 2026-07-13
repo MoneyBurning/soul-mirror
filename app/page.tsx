@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
 import { signInWithGoogle } from '@/lib/supabase';
 
@@ -116,9 +117,12 @@ export default function LandingPage() {
         ))}
       </section>
 
-      <p className="relative pb-16 text-center text-xs text-purple-300/60">
-        완전 무료로 시작할 수 있어요
-      </p>
+      <div className="relative flex flex-col items-center gap-2 pb-16 text-center">
+        <p className="text-xs text-purple-300/60">완전 무료로 시작할 수 있어요</p>
+        <Link href="/privacy" className="text-xs text-purple-400/50 hover:text-amber-300 hover:underline">
+          개인정보처리방침 · Privacy Policy
+        </Link>
+      </div>
     </div>
   );
 }
