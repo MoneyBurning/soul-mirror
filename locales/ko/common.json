@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "home": "홈",
+    "reading": "리딩",
+    "timeline": "타임라인",
+    "profile": "프로필",
+    "logout": "로그아웃",
+    "getStarted": "시작하기"
+  },
+  "reading": {
+    "title": "새 리딩",
+    "questionPlaceholder": "질문을 입력하세요...",
+    "selectCategory": "카테고리를 선택하세요",
+    "selectSpread": "스프레드를 선택하세요",
+    "drawCards": "카드 뽑기",
+    "saveReading": "리딩 저장",
+    "newReading": "새 리딩",
+    "viewTimeline": "타임라인에서 보기"
+  },
+  "category": {
+    "love": "연애",
+    "career": "커리어",
+    "money": "금전",
+    "health": "건강",
+    "family": "가족",
+    "friendship": "우정",
+    "study": "학업",
+    "general": "일반"
+  },
+  "emotion": {
+    "happy": "기분 좋음",
+    "neutral": "그저 그럼",
+    "sad": "우울함",
+    "angry": "화남",
+    "anxious": "불안함"
+  },
+  "spread": {
+    "past_present_future": "과거 · 현재 · 미래 (3장)",
+    "love": "연애 스프레드 (5장)",
+    "career": "커리어 스프레드 (5장)",
+    "decision": "결정 스프레드 (3장)"
+  },
+  "dashboard": {
+    "title": "대시보드",
+    "dailyCard": "오늘의 카드",
+    "thisMonth": "이번 달",
+    "totalReadings": "총 리딩 수",
+    "positiveCards": "긍정 카드 비율",
+    "avgScore": "평균 리얼리티 점수",
+    "topCards": "가장 많이 나온 카드",
+    "remainingToday": "오늘 {{count}}회 남음",
+    "recentReadings": "최근 리딩",
+    "pendingChecks": "대기 중인 리얼리티 체크"
+  },
+  "timeline": {
+    "title": "타임라인",
+    "checkDue": "{{days}}일 후 체크 예정",
+    "rateReading": "이 리딩 평가하기",
+    "completed": "완료"
+  },
+  "common": {
+    "loading": "불러오는 중...",
+    "error": "문제가 발생했습니다.",
+    "success": "완료되었습니다!",
+    "save": "저장",
+    "cancel": "취소",
+    "close": "닫기"
+  }
+}

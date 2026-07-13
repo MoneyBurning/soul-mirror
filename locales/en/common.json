@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "home": "Home",
+    "reading": "Reading",
+    "timeline": "Timeline",
+    "profile": "Profile",
+    "logout": "Sign Out",
+    "getStarted": "Get Started"
+  },
+  "reading": {
+    "title": "New Reading",
+    "questionPlaceholder": "Ask your question...",
+    "selectCategory": "Choose a category",
+    "selectSpread": "Choose a spread",
+    "drawCards": "Draw Cards",
+    "saveReading": "Save Reading",
+    "newReading": "New Reading",
+    "viewTimeline": "View in Timeline"
+  },
+  "category": {
+    "love": "Love",
+    "career": "Career",
+    "money": "Money",
+    "health": "Health",
+    "family": "Family",
+    "friendship": "Friendship",
+    "study": "Study",
+    "general": "General"
+  },
+  "emotion": {
+    "happy": "Feeling Good",
+    "neutral": "Feeling Neutral",
+    "sad": "Feeling Down",
+    "angry": "Feeling Angry",
+    "anxious": "Feeling Anxious"
+  },
+  "spread": {
+    "past_present_future": "Past · Present · Future (3 cards)",
+    "love": "Love Spread (5 cards)",
+    "career": "Career Spread (5 cards)",
+    "decision": "Decision Spread (3 cards)"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "dailyCard": "Daily Card",
+    "thisMonth": "This Month",
+    "totalReadings": "Total Readings",
+    "positiveCards": "Positive Cards",
+    "avgScore": "Avg. Reality Score",
+    "topCards": "Top Cards",
+    "remainingToday": "{{count}} readings remaining today",
+    "recentReadings": "Recent Readings",
+    "pendingChecks": "Pending Reality Checks"
+  },
+  "timeline": {
+    "title": "Timeline",
+    "checkDue": "Check due in {{days}} days",
+    "rateReading": "Rate this reading",
+    "completed": "Completed"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong.",
+    "save": "Save",
+    "success": "Success!",
+    "cancel": "Cancel",
+    "close": "Close"
+  }
+}
