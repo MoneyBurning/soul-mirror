@@ -12,16 +12,8 @@ import { ReadingRequestSchema, ReadingEmotionUpdateSchema } from '@/lib/validato
 import { generateReading, RATE_LIMIT_MESSAGE } from '@/lib/groq';
 import { getRandomCards } from '@/lib/tarot-data';
 import { errorResponse } from '@/lib/api-response';
-import type { ReadingCard, SpreadType } from '@/types';
-
-const SPREAD_CARD_COUNTS: Record<SpreadType, number> = {
-  daily: 1,
-  past_present_future: 3,
-  love: 5,
-  career: 5,
-  decision: 3,
-  celtic_cross: 10,
-};
+import { SPREAD_CARD_COUNTS, getSpreadDefinition } from '@/lib/spreads';
+import type { ReadingCard } from '@/types';
 
 interface ReadingResponseBody {
   readingId: string;
@@ -106,10 +98,6 @@ export async function POST(request: NextRequest) {
 
     const { question, category, spreadType } = parsed.data;
 
-    if (spreadType === 'celtic_cross') {
-      return errorResponse('Celtic Cross 스프레드는 프리미엄 기능으로 준비 중입니다.', 403);
-    }
-
     // 4. 오늘 리딩 횟수 확인 (무료 3회 / 프리미엄 10회 초과 시 429)
     const isPremium = await isPremiumUser(user.id);
     const dailyLimit = isPremium ? PREMIUM_DAILY_READING_LIMIT : FREE_DAILY_READING_LIMIT;
@@ -128,6 +116,8 @@ export async function POST(request: NextRequest) {
     }));
 
     // 6. Groq AI 호출
+    const spreadDefinition = getSpreadDefinition(spreadType);
+
     let aiResult: { response: string; actionTip: string };
     try {
       aiResult = await generateReading({
@@ -138,6 +128,7 @@ export async function POST(request: NextRequest) {
           name: rc.card.korName,
           orientation: rc.orientation,
           position: rc.position,
+          positionLabel: spreadDefinition?.positions?.[rc.position - 1],
         })),
       });
     } catch (err) {

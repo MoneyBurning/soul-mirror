@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, useAnimationControls } from 'framer-motion';
 import type { TarotCard as TarotCardData } from '@/types';
 
-type CardSize = 'xs' | 'sm' | 'md' | 'lg';
+type CardSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 interface TarotCardProps {
   card?: TarotCardData;
@@ -20,6 +20,7 @@ const SIZE_CLASSES: Record<CardSize, string> = {
   sm: 'w-16 h-24 sm:w-20 sm:h-32',
   md: 'w-24 h-36 sm:w-32 sm:h-48',
   lg: 'w-32 h-48 sm:w-44 sm:h-64',
+  xl: 'w-48 h-72 sm:w-64 sm:h-96',
 };
 
 function getCardEmblem(card: TarotCardData): string {

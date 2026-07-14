@@ -38,6 +38,7 @@ interface ReadingCardInput {
   name: string;
   orientation: 'normal' | 'reverse';
   position: number;
+  positionLabel?: string;
 }
 
 interface GenerateReadingParams {
@@ -92,7 +93,10 @@ export async function generateReading(
 ): Promise<GenerateReadingResult> {
   try {
     const cardsText = params.cards
-      .map((card) => `${card.position}. ${card.name} (${orientationLabel(card.orientation)})`)
+      .map((card) => {
+        const label = card.positionLabel ? `[${card.positionLabel}] ` : '';
+        return `${card.position}. ${label}${card.name} (${orientationLabel(card.orientation)})`;
+      })
       .join('\n');
 
     const userPrompt = `질문: ${params.question}

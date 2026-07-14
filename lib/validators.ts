@@ -15,11 +15,12 @@ const categoryValues = [
 
 const spreadTypeValues = [
   'daily',
+  'one_card',
   'past_present_future',
   'love',
   'career',
   'decision',
-  'celtic_cross',
+  'full_reading',
 ] as const satisfies readonly SpreadType[];
 
 const emotionValues = [

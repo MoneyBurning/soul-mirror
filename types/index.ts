@@ -10,11 +10,12 @@ export type Category =
 
 export type SpreadType =
   | 'daily'
+  | 'one_card'
   | 'past_present_future'
   | 'love'
   | 'career'
   | 'decision'
-  | 'celtic_cross';
+  | 'full_reading';
 
 export type Emotion = 'happy' | 'neutral' | 'sad' | 'angry' | 'anxious';
 
