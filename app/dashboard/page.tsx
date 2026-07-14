@@ -376,6 +376,9 @@ export default function DashboardPage() {
 
         {/* 1. Daily Card */}
         <section>
+          <h2 className="mb-4 bg-gradient-to-r from-purple-400 via-fuchsia-300 to-amber-300 bg-clip-text text-center text-xl font-bold text-transparent sm:text-2xl">
+            ✨ 오늘 당신의 행운카드는?
+          </h2>
           {dailyCardLoading && <SkeletonBlock className="h-40" />}
           {!dailyCardLoading && dailyCardError && <ErrorNotice message={dailyCardError} />}
           {!dailyCardLoading && !dailyCardError && dailyCard && (
