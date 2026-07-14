@@ -1,12 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import type { MouseEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import TarotCard from '@/components/TarotCard';
 import CategorySelector from '@/components/CategorySelector';
 import EmotionPicker from '@/components/EmotionPicker';
 import { getCurrentUser } from '@/lib/supabase';
+import { TAROT_CARDS } from '@/lib/tarot-data';
 import type { Category, SpreadType, Emotion, ReadingCard } from '@/types';
 
 const QUESTION_MAX_LENGTH = 200;
@@ -20,6 +23,17 @@ const SPREAD_OPTIONS: { value: SpreadType; label: string; cardCount: number }[] 
 
 const CARD_FLIP_INTERVAL_MS = 500;
 const TYPEWRITER_DURATION_MS = 2500;
+
+// 카드 뽑기 부채꼴(fan) 배치 설정 — 데스크탑 전용
+const FAN_COUNT = TAROT_CARDS.length;
+const FAN_ANGLE_RANGE_DEG = 75; // 중앙 기준 좌우 최대 각도
+const FAN_RADIUS_PX = 260; // 하단 중심 피벗에서 카드까지 거리
+const FAN_HEIGHT_PX = 340;
+
+interface FlyDelta {
+  x: number;
+  y: number;
+}
 
 function delay(ms: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, ms));
@@ -77,6 +91,12 @@ export default function ReadingPage() {
   const [aiResponse, setAiResponse] = useState('');
   const [actionTip, setActionTip] = useState('');
 
+  // 부채꼴에서 클릭으로 선택한 카드의 인덱스(0~77) 목록 — 실제 뽑기는 여전히 서버가 랜덤으로 수행하며,
+  // 이 선택은 순수하게 "직접 뽑는" 느낌을 주기 위한 UX 연출용
+  const [selectedSlots, setSelectedSlots] = useState<number[]>([]);
+  const [flyDeltas, setFlyDeltas] = useState<Record<number, FlyDelta>>({});
+  const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   const [revealedCount, setRevealedCount] = useState(0);
   const [interpretationVisible, setInterpretationVisible] = useState(false);
 
@@ -111,6 +131,12 @@ export default function ReadingPage() {
     };
   }, []);
 
+  // 스프레드가 바뀌면 필요한 장수가 달라지므로 이전 선택을 초기화
+  useEffect(() => {
+    setSelectedSlots([]);
+    setFlyDeltas({});
+  }, [spreadType]);
+
   const typedText = useTypewriter(aiResponse, interpretationVisible);
   const isTypingComplete =
     interpretationVisible && aiResponse.length > 0 && typedText.length >= aiResponse.length;
@@ -137,8 +163,31 @@ export default function ReadingPage() {
     setInterpretationVisible(true);
   }
 
+  function handleFanCardClick(fanIndex: number, event: MouseEvent<HTMLDivElement>) {
+    if (drawnCards || isDrawing) return;
+    if (selectedSlots.includes(fanIndex)) return;
+    if (selectedSlots.length >= cardCount) return;
+
+    const slotIndex = selectedSlots.length;
+    const fanRect = event.currentTarget.getBoundingClientRect();
+    const slotRect = slotRefs.current[slotIndex]?.getBoundingClientRect();
+
+    if (slotRect) {
+      setFlyDeltas((prev) => ({
+        ...prev,
+        [slotIndex]: {
+          x: fanRect.left + fanRect.width / 2 - (slotRect.left + slotRect.width / 2),
+          y: fanRect.top + fanRect.height / 2 - (slotRect.top + slotRect.height / 2),
+        },
+      }));
+    }
+
+    setSelectedSlots((prev) => [...prev, fanIndex]);
+  }
+
   async function handleDrawCards() {
     if (!formValid || isDrawing || drawnCards) return;
+    if (selectedSlots.length !== cardCount) return;
 
     setDrawError(null);
     setLimitNotice(null);
@@ -231,6 +280,8 @@ export default function ReadingPage() {
     setDrawnCards(null);
     setAiResponse('');
     setActionTip('');
+    setSelectedSlots([]);
+    setFlyDeltas({});
     setRevealedCount(0);
     setInterpretationVisible(false);
     setEmotion(undefined);
@@ -299,17 +350,46 @@ export default function ReadingPage() {
 
         {/* 단계 4: 카드 뽑기 */}
         {spreadType && (
-          <section className="flex flex-col items-center gap-5">
+          <section className="flex flex-col items-center gap-6">
+            {/* 선택된/뽑힌 카드가 놓이는 상단 슬롯 */}
             <div className="flex flex-wrap justify-center gap-4">
-              {Array.from({ length: cardCount }).map((_, index) => (
-                <TarotCard
-                  key={index}
-                  position={index + 1}
-                  card={drawnCards ? drawnCards[index].card : undefined}
-                  orientation={drawnCards ? drawnCards[index].orientation : 'normal'}
-                  isRevealed={drawnCards !== null && index < revealedCount}
-                />
-              ))}
+              {Array.from({ length: cardCount }).map((_, index) => {
+                const filled = drawnCards !== null || index < selectedSlots.length;
+                const delta = flyDeltas[index];
+
+                return (
+                  <div
+                    key={index}
+                    ref={(el) => {
+                      slotRefs.current[index] = el;
+                    }}
+                  >
+                    {filled ? (
+                      <motion.div
+                        key={drawnCards ? 'drawn' : 'picked'}
+                        initial={
+                          !drawnCards && delta
+                            ? { x: delta.x, y: delta.y, scale: 0.55, opacity: 0.5 }
+                            : false
+                        }
+                        animate={{ x: 0, y: 0, scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                      >
+                        <TarotCard
+                          position={index + 1}
+                          card={drawnCards ? drawnCards[index].card : undefined}
+                          orientation={drawnCards ? drawnCards[index].orientation : 'normal'}
+                          isRevealed={drawnCards !== null && index < revealedCount}
+                        />
+                      </motion.div>
+                    ) : (
+                      <div className="flex h-24 w-16 items-center justify-center rounded-xl border-2 border-dashed border-purple-500/30 text-xs text-purple-400/40 sm:h-32 sm:w-20">
+                        {index + 1}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
 
             {limitNotice && (
@@ -324,14 +404,86 @@ export default function ReadingPage() {
             )}
 
             {!drawnCards && (
-              <button
-                type="button"
-                onClick={handleDrawCards}
-                disabled={!formValid || isDrawing}
-                className="rounded-full bg-amber-400 px-8 py-3 text-sm font-semibold text-purple-950 transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {isDrawing ? '뽑는 중...' : '카드 뽑기'}
-              </button>
+              <>
+                <p className="text-xs text-purple-300/60">
+                  {selectedSlots.length < cardCount
+                    ? `카드를 클릭해서 뽑아주세요 (${selectedSlots.length}/${cardCount})`
+                    : '카드 선택이 끝났어요. 아래 버튼을 눌러 해석을 확인하세요.'}
+                </p>
+
+                {/* 데스크탑: 78장 부채꼴 배치 */}
+                <div
+                  className="relative hidden w-full max-w-full sm:block"
+                  style={{ height: FAN_HEIGHT_PX }}
+                >
+                  {Array.from({ length: FAN_COUNT }).map((_, i) => {
+                    const angle =
+                      -FAN_ANGLE_RANGE_DEG + (2 * FAN_ANGLE_RANGE_DEG * i) / (FAN_COUNT - 1);
+                    const selected = selectedSlots.includes(i);
+                    const full = selectedSlots.length >= cardCount;
+
+                    return (
+                      <div
+                        key={i}
+                        className="absolute bottom-0 left-1/2"
+                        style={{
+                          transformOrigin: 'bottom center',
+                          transform: `translateX(-50%) rotate(${angle}deg)`,
+                          zIndex: selected ? 0 : i,
+                        }}
+                      >
+                        <div style={{ transform: `translateY(-${FAN_RADIUS_PX}px)` }}>
+                          <motion.div
+                            data-fan-index={i}
+                            whileHover={!selected && !full ? { y: -20 } : undefined}
+                            animate={{ opacity: selected ? 0.3 : 1 }}
+                            transition={{ duration: 0.2 }}
+                            onClick={(event) => handleFanCardClick(i, event)}
+                            className={
+                              selected
+                                ? 'cursor-default'
+                                : full
+                                  ? 'cursor-not-allowed'
+                                  : 'cursor-pointer'
+                            }
+                          >
+                            <TarotCard size="xs" />
+                          </motion.div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* 모바일: 가로 스크롤 일렬 배치 */}
+                <div className="flex w-full gap-2 overflow-x-auto px-1 py-2 sm:hidden">
+                  {Array.from({ length: FAN_COUNT }).map((_, i) => {
+                    const selected = selectedSlots.includes(i);
+
+                    return (
+                      <motion.div
+                        key={i}
+                        data-fan-index={i}
+                        animate={{ opacity: selected ? 0.3 : 1 }}
+                        transition={{ duration: 0.2 }}
+                        onClick={(event) => handleFanCardClick(i, event)}
+                        className="flex-shrink-0"
+                      >
+                        <TarotCard size="xs" />
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleDrawCards}
+                  disabled={!formValid || isDrawing || selectedSlots.length !== cardCount}
+                  className="rounded-full bg-amber-400 px-8 py-3 text-sm font-semibold text-purple-950 transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  {isDrawing ? '해석을 준비하는 중...' : '해석 보기'}
+                </button>
+              </>
             )}
           </section>
         )}
