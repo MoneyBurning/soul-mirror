@@ -49,8 +49,8 @@ create table if not exists readings (
     'family', 'friendship', 'study', 'general'
   )),
   spread_type text check (spread_type in (
-    'daily', 'past_present_future',
-    'love', 'career', 'decision', 'celtic_cross'
+    'daily', 'one_card', 'past_present_future',
+    'love', 'career', 'decision', 'full_reading'
   )),
   ai_response text not null,
   action_tip text,
@@ -58,6 +58,14 @@ create table if not exists readings (
   reality_check_due timestamptz,
   created_at timestamptz not null default now()
 );
+
+-- 스프레드 정리(원카드/풀 리딩 추가, 켈틱크로스 제거)로 허용값이 바뀌어
+-- 기존에 생성된 테이블에도 반영되도록 제약을 재생성
+alter table readings drop constraint if exists readings_spread_type_check;
+alter table readings add constraint readings_spread_type_check check (spread_type in (
+  'daily', 'one_card', 'past_present_future',
+  'love', 'career', 'decision', 'full_reading'
+));
 
 -- ============================================================
 -- 4. reading_cards
@@ -105,6 +113,39 @@ create policy "profiles_insert_own" on profiles
 drop policy if exists "profiles_update_own" on profiles;
 create policy "profiles_update_own" on profiles
   for update using (auth.uid() = id) with check (auth.uid() = id);
+
+-- ============================================================
+-- auth.users 신규 가입 시 profiles 행 자동 생성
+-- (Google OAuth 로그인만으로는 profiles가 생기지 않아서, 유저가 /profile을
+--  직접 방문해 저장하기 전까지 readings/reality_checks/rate_limits의
+--  "user_id references profiles(id)" 외래키 제약이 위반되어 저장이 실패하던 버그를 수정)
+-- ============================================================
+create or replace function public.handle_new_user()
+returns trigger as $$
+begin
+  insert into public.profiles (id, nickname, avatar_type)
+  values (
+    new.id,
+    coalesce(new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'name'),
+    coalesce(new.raw_user_meta_data->>'avatar_url', new.raw_user_meta_data->>'picture')
+  )
+  on conflict (id) do nothing;
+  return new;
+end;
+$$ language plpgsql security definer set search_path = public;
+
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute function public.handle_new_user();
+
+-- 이미 가입했지만 profiles가 없는 기존 유저를 위한 1회성 백필
+insert into public.profiles (id)
+select u.id
+from auth.users u
+left join public.profiles p on p.id = u.id
+where p.id is null
+on conflict (id) do nothing;
 
 -- readings: 본인만 읽기/쓰기
 drop policy if exists "readings_select_own" on readings;
