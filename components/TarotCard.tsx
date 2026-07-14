@@ -48,7 +48,33 @@ export default function TarotCard({
   const controls = useAnimationControls();
   const [displayRevealed, setDisplayRevealed] = useState(isRevealed);
   const [isFlipping, setIsFlipping] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const isFirstRender = useRef(true);
+
+  // <img src="깨진 URL">을 SSR된 그대로 그리면, 로컬 404처럼 아주 빠르게
+  // 실패하는 경우 React가 hydration 중 onError 리스너를 붙이기 전에
+  // 네이티브 error 이벤트가 이미 지나가버려 못 잡는 경우가 있다.
+  // 그래서 별도의 Image() 객체로 먼저 프리로드해서 로드 성공이 "확인된 뒤"에만
+  // 실제 <img>를 그린다 (실패/미확인 상태에서는 이모지 엠블럼을 보여줌).
+  useEffect(() => {
+    setImageLoaded(false);
+
+    if (!card?.imageUrl) return;
+
+    let cancelled = false;
+    const preloadImage = new window.Image();
+    preloadImage.onload = () => {
+      if (!cancelled) setImageLoaded(true);
+    };
+    preloadImage.onerror = () => {
+      if (!cancelled) setImageLoaded(false);
+    };
+    preloadImage.src = card.imageUrl;
+
+    return () => {
+      cancelled = true;
+    };
+  }, [card?.imageUrl]);
 
   // isRevealed prop이 바뀔 때만 0 → 180 → 0으로 회전하고,
   // 회전이 180도에 도달한 중간 지점에서 실제 표시 내용(앞/뒷면)을 교체한다.
@@ -127,13 +153,19 @@ export default function TarotCard({
           className="h-full w-full cursor-pointer select-none outline-none"
         >
           {showFront && card ? (
-            <div
-              className={`flex h-full w-full flex-col items-center justify-between rounded-xl border-2 border-amber-300/60 bg-gradient-to-b from-indigo-950 to-purple-950 p-1.5 text-center shadow-lg shadow-purple-950/50 sm:p-2.5 ${
-                orientation === 'reverse' ? 'rotate-180' : ''
-              }`}
-            >
-              <div className="flex flex-1 items-center justify-center text-2xl sm:text-3xl">
-                {getCardEmblem(card)}
+            <div className="flex h-full w-full flex-col items-center justify-between rounded-xl border-2 border-amber-300/60 bg-gradient-to-b from-indigo-950 to-purple-950 p-1.5 text-center shadow-lg shadow-purple-950/50 sm:p-2.5">
+              {/* 역방향이면 이 아트워크 영역만 180도 회전 — 이름/키워드 텍스트는 항상 정방향 유지 */}
+              <div
+                className={`relative flex flex-1 w-full items-center justify-center overflow-hidden ${
+                  orientation === 'reverse' ? 'rotate-180' : ''
+                }`}
+              >
+                {card.imageUrl && imageLoaded ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={card.imageUrl} alt="" className="h-full w-full object-contain" />
+                ) : (
+                  <span className="text-2xl sm:text-3xl">{getCardEmblem(card)}</span>
+                )}
               </div>
               <div className="w-full space-y-0.5 sm:space-y-1">
                 <p className="truncate text-[9px] font-semibold text-amber-200 sm:text-xs">

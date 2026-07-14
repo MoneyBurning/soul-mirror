@@ -1,0 +1,513 @@
+Soul Mirror — 타로 78장 Gemini 이미지 생성 프롬프트
+====================================================
+공통 스타일: mystical watercolor, deep purple and gold color palette,
+ethereal misty atmosphere, no text, portrait format, tarot card art.
+
+각 카드의 핵심 상징물은 특정 덱을 그대로 베끼지 않도록 일반적인/전통적인
+타로 도상학 수준에서만 서술했습니다. Gemini가 매번 새로운 구도로
+그리도록, 프롬프트 그대로 복붙하시면 됩니다. 저장 파일명은
+FILENAMES.txt와 동일한 규칙(예: major-0.jpg)을 따릅니다.
+
+====================================================
+■ MAJOR ARCANA (22장)
+====================================================
+
+[major-0.jpg] The Fool (바보)
+A carefree young traveler stepping toward the edge of a cliff, a small
+white dog at their heels, a bindle bag over one shoulder, a rose in
+hand, bright sun overhead beyond distant mountains. Mystical
+watercolor illustration, deep purple and gold color palette, ethereal
+misty atmosphere, no text, portrait format, tarot card art.
+
+[major-1.jpg] The Magician (마법사)
+A robed figure standing before an altar bearing a cup, a sword, a
+wand, and a coin, one arm raised toward the sky and the other
+pointing to the earth, an infinity symbol glowing above their head.
+Mystical watercolor illustration, deep purple and gold color palette,
+ethereal misty atmosphere, no text, portrait format, tarot card art.
+
+[major-2.jpg] The High Priestess (여사제)
+A serene veiled woman seated between two tall pillars, one light and
+one dark, a crescent moon resting at her feet, a scroll of hidden
+knowledge in her lap. Mystical watercolor illustration, deep purple
+and gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[major-3.jpg] The Empress (여황제)
+A crowned woman reclining on a cushioned throne within a lush
+overgrown garden, a wheat field and flowing river behind her, a
+symbol of abundance at her side. Mystical watercolor illustration,
+deep purple and gold color palette, ethereal misty atmosphere, no
+text, portrait format, tarot card art.
+
+[major-4.jpg] The Emperor (황제)
+A bearded, crowned ruler seated on a stone throne carved with ram
+heads, holding an ankh-like scepter and a golden orb, rugged
+mountains rising behind him. Mystical watercolor illustration, deep
+purple and gold color palette, ethereal misty atmosphere, no text,
+portrait format, tarot card art.
+
+[major-5.jpg] The Hierophant (교황)
+A robed high priest seated between two carved pillars wearing a
+triple crown, one hand raised in blessing, two kneeling acolytes
+before him. Mystical watercolor illustration, deep purple and gold
+color palette, ethereal misty atmosphere, no text, portrait format,
+tarot card art.
+
+[major-6.jpg] The Lovers (연인)
+A man and woman standing beneath a radiant winged figure, a tree of
+flames behind the man and a tree of fruit with a coiled serpent
+behind the woman, a distant sunlit mountain between them. Mystical
+watercolor illustration, deep purple and gold color palette, ethereal
+misty atmosphere, no text, portrait format, tarot card art.
+
+[major-7.jpg] The Chariot (전차)
+An armored figure standing tall in a chariot drawn by two sphinxes,
+one black and one white, a canopy of stars overhead and city walls in
+the distance. Mystical watercolor illustration, deep purple and gold
+color palette, ethereal misty atmosphere, no text, portrait format,
+tarot card art.
+
+[major-8.jpg] Strength (힘)
+A gentle woman calmly closing the jaws of a great lion with her bare
+hands, an infinity symbol glowing above her head, a garland of
+flowers at her waist. Mystical watercolor illustration, deep purple
+and gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[major-9.jpg] The Hermit (은둔자)
+A cloaked elder standing alone atop a snowy peak, holding aloft a
+lantern containing a single glowing star, a wooden staff in the other
+hand. Mystical watercolor illustration, deep purple and gold color
+palette, ethereal misty atmosphere, no text, portrait format, tarot
+card art.
+
+[major-10.jpg] Wheel of Fortune (운명의 수레바퀴)
+A great wheel suspended among swirling clouds, mystical symbols
+etched around its rim, a sphinx perched at the top and serpentine
+figures at its sides. Mystical watercolor illustration, deep purple
+and gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[major-11.jpg] Justice (정의)
+A robed figure seated between two stone pillars, holding an upright
+sword in one hand and a perfectly balanced scale in the other, calm
+and unwavering gaze. Mystical watercolor illustration, deep purple
+and gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[major-12.jpg] The Hanged Man (매달린 남자)
+A figure suspended upside down by one foot from a wooden beam,
+expression peaceful, a soft halo of light glowing around the head.
+Mystical watercolor illustration, deep purple and gold color palette,
+ethereal misty atmosphere, no text, portrait format, tarot card art.
+
+[major-13.jpg] Death (죽음)
+A skeletal armored rider on a pale horse moving slowly across a
+twilight field, a fallen crown on the ground, a sun rising between
+distant towers. Mystical watercolor illustration, deep purple and
+gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[major-14.jpg] Temperance (절제)
+A winged figure standing with one foot on land and one in a flowing
+stream, pouring water between two cups, a path winding toward
+distant mountains. Mystical watercolor illustration, deep purple and
+gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[major-15.jpg] The Devil (악마)
+A horned, winged figure seated on a pedestal, two smaller figures
+loosely chained below, an inverted pentagram glowing above. Mystical
+watercolor illustration, deep purple and gold color palette, ethereal
+misty atmosphere, no text, portrait format, tarot card art.
+
+[major-16.jpg] The Tower (탑)
+A tall stone tower struck by a bolt of lightning, its crowned top
+crumbling into flame, two figures falling through the night sky.
+Mystical watercolor illustration, deep purple and gold color palette,
+ethereal misty atmosphere, no text, portrait format, tarot card art.
+
+[major-17.jpg] The Star (별)
+A woman kneeling beside a quiet pool, pouring water from two vessels,
+one onto the land and one into the water, a great star shining above
+amid smaller stars. Mystical watercolor illustration, deep purple and
+gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[major-18.jpg] The Moon (달)
+A luminous full moon watching over a winding path between two
+distant towers, a wolf and a dog howling below, a small creature
+emerging from a pool. Mystical watercolor illustration, deep purple
+and gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[major-19.jpg] The Sun (태양)
+A radiant sun shining over a joyful child riding a white horse,
+sunflowers blooming along a low garden wall. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[major-20.jpg] Judgement (심판)
+An angel sounding a trumpet from among the clouds, figures below
+rising with arms outstretched in awakening. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[major-21.jpg] The World (세계)
+A dancing figure wrapped in a flowing scarf, encircled by a great
+wreath, four symbolic creatures watching from each corner. Mystical
+watercolor illustration, deep purple and gold color palette, ethereal
+misty atmosphere, no text, portrait format, tarot card art.
+
+====================================================
+■ WANDS (완드, 14장 — 불 / 열정·행동)
+====================================================
+
+[wands-1.jpg] Ace of Wands (완드 에이스)
+A single hand emerging from soft clouds, gripping an upright wand
+that is sprouting fresh green leaves, radiating raw creative energy.
+Mystical watercolor illustration, deep purple and gold color palette,
+ethereal misty atmosphere, no text, portrait format, tarot card art.
+
+[wands-2.jpg] Two of Wands (완드 2)
+A robed figure standing atop a battlement, holding a small globe and
+gazing toward a distant horizon, two wands planted beside them.
+Mystical watercolor illustration, deep purple and gold color palette,
+ethereal misty atmosphere, no text, portrait format, tarot card art.
+
+[wands-3.jpg] Three of Wands (완드 3)
+A figure standing on a cliff's edge watching ships sail toward the
+horizon, three tall wands planted firmly in the ground beside them.
+Mystical watercolor illustration, deep purple and gold color palette,
+ethereal misty atmosphere, no text, portrait format, tarot card art.
+
+[wands-4.jpg] Four of Wands (완드 4)
+A floral garland strung between four upright wands, a distant castle
+glowing warmly beyond, figures celebrating in the foreground.
+Mystical watercolor illustration, deep purple and gold color palette,
+ethereal misty atmosphere, no text, portrait format, tarot card art.
+
+[wands-5.jpg] Five of Wands (완드 5)
+Five figures playfully clashing raised wands together in a chaotic,
+energetic circle. Mystical watercolor illustration, deep purple and
+gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[wands-6.jpg] Six of Wands (완드 6)
+A victorious rider on horseback holding a wand crowned with a laurel
+wreath, onlookers cheering alongside. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[wands-7.jpg] Seven of Wands (완드 7)
+A determined figure standing on high ground, defensively wielding a
+wand against six wands rising from below. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[wands-8.jpg] Eight of Wands (완드 8)
+Eight wands flying swiftly through an open sky over a sweeping
+landscape, motion streaking behind them. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[wands-9.jpg] Nine of Wands (완드 9)
+A weary, bandaged figure standing watchful guard, leaning on a wand,
+eight more wands lined up behind them. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[wands-10.jpg] Ten of Wands (완드 10)
+A figure bent under the weight of ten bundled wands, straining to
+carry them toward a distant town. Mystical watercolor illustration,
+deep purple and gold color palette, ethereal misty atmosphere, no
+text, portrait format, tarot card art.
+
+[wands-11.jpg] Page of Wands (완드 페이지)
+A young traveler in desert-toned clothing holding a wand, gazing
+curiously at its sprouting leaves, distant pyramids on the horizon.
+Mystical watercolor illustration, deep purple and gold color palette,
+ethereal misty atmosphere, no text, portrait format, tarot card art.
+
+[wands-12.jpg] Knight of Wands (완드 기사)
+An armored rider on a rearing horse, wand raised high, plumes of fire
+trailing from the helmet. Mystical watercolor illustration, deep
+purple and gold color palette, ethereal misty atmosphere, no text,
+portrait format, tarot card art.
+
+[wands-13.jpg] Queen of Wands (완드 여왕)
+A crowned woman seated on a throne flanked by lions, holding a wand
+in one hand and a sunflower in the other. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[wands-14.jpg] King of Wands (완드 왕)
+A crowned king seated on a throne carved with salamanders, holding a
+flowering wand with quiet, confident authority. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+====================================================
+■ CUPS (컵, 14장 — 물 / 감정·관계)
+====================================================
+
+[cups-1.jpg] Ace of Cups (컵 에이스)
+A hand emerging from soft clouds holding an overflowing golden
+chalice, a dove descending toward it, water lilies floating below.
+Mystical watercolor illustration, deep purple and gold color palette,
+ethereal misty atmosphere, no text, portrait format, tarot card art.
+
+[cups-2.jpg] Two of Cups (컵 2)
+A man and woman facing each other, exchanging cups in a quiet pledge,
+a winged figure glowing softly above them. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[cups-3.jpg] Three of Cups (컵 3)
+Three joyful figures dancing in a circle, raising cups together in
+celebration beneath a starry sky. Mystical watercolor illustration,
+deep purple and gold color palette, ethereal misty atmosphere, no
+text, portrait format, tarot card art.
+
+[cups-4.jpg] Four of Cups (컵 4)
+A seated figure beneath a tree, arms crossed, gazing past an offered
+cup toward three untouched cups nearby. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[cups-5.jpg] Five of Cups (컵 5)
+A cloaked figure mourning before three spilled cups, unaware of two
+upright cups standing quietly behind them. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[cups-6.jpg] Six of Cups (컵 6)
+Two children exchanging flower-filled cups in a quiet, nostalgic
+garden courtyard at dusk. Mystical watercolor illustration, deep
+purple and gold color palette, ethereal misty atmosphere, no text,
+portrait format, tarot card art. 
+
+[cups-7.jpg] Seven of Cups (컵 7)
+A silhouetted figure facing a row of floating cups, each glowing with
+a different dreamlike vision. Mystical watercolor illustration, deep
+purple and gold color palette, ethereal misty atmosphere, no text,
+portrait format, tarot card art.  여기까지 제작
+
+[cups-8.jpg] Eight of Cups (컵 8)
+A cloaked figure walking away at night from eight stacked cups,
+heading toward distant misty mountains. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[cups-9.jpg] Nine of Cups (컵 9)
+A contented figure seated with arms crossed before a curved,
+gleaming row of nine cups. Mystical watercolor illustration, deep
+purple and gold color palette, ethereal misty atmosphere, no text,
+portrait format, tarot card art.
+
+[cups-10.jpg] Ten of Cups (컵 10)
+A joyful family beneath a radiant arc of ten cups, overlooking their
+peaceful home in the valley below. Mystical watercolor illustration,
+deep purple and gold color palette, ethereal misty atmosphere, no
+text, portrait format, tarot card art.
+
+[cups-11.jpg] Page of Cups (컵 페이지)
+A young figure standing at the seashore, holding up a cup from which
+a small fish curiously peeks out. Mystical watercolor illustration,
+deep purple and gold color palette, ethereal misty atmosphere, no
+text, portrait format, tarot card art.
+
+[cups-12.jpg] Knight of Cups (컵 기사)
+An armored rider on a calm, slow-moving horse, holding a cup forward
+as an offering, a quiet river beside the path. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[cups-13.jpg] Queen of Cups (컵 여왕)
+A crowned woman seated at the water's edge, gazing thoughtfully into
+an ornate covered cup. Mystical watercolor illustration, deep purple
+and gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[cups-14.jpg] King of Cups (컵 왕)
+A crowned king seated calmly on a throne that floats upon a turbulent
+sea, holding a cup with steady composure. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+====================================================
+■ SWORDS (소드, 14장 — 공기 / 생각·갈등)
+====================================================
+
+[swords-1.jpg] Ace of Swords (소드 에이스)
+A hand emerging from clouds gripping an upright sword crowned with a
+wreath, radiating sudden mental clarity. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[swords-2.jpg] Two of Swords (소드 2)
+A blindfolded figure seated calmly, holding two crossed swords, a
+crescent moon and still sea in the background. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[swords-3.jpg] Three of Swords (소드 3)
+Three swords piercing a single glowing heart beneath a stormy grey
+sky streaked with rain. Mystical watercolor illustration, deep purple
+and gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[swords-4.jpg] Four of Swords (소드 4)
+A figure resting in quiet repose, three swords mounted above and one
+sword lying beneath, in a dim, still sanctuary. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[swords-5.jpg] Five of Swords (소드 5)
+A figure gathering fallen swords with a hollow expression, two others
+walking away in the distance. Mystical watercolor illustration, deep
+purple and gold color palette, ethereal misty atmosphere, no text,
+portrait format, tarot card art.
+
+[swords-6.jpg] Six of Swords (소드 6)
+A ferryman poling a boat carrying a cloaked figure across calm water
+toward a distant shore, six swords standing upright in the boat.
+Mystical watercolor illustration, deep purple and gold color palette,
+ethereal misty atmosphere, no text, portrait format, tarot card art.
+
+[swords-7.jpg] Seven of Swords (소드 7)
+A figure quietly slipping away from a camp at dawn, carrying several
+swords, glancing back over one shoulder. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[swords-8.jpg] Eight of Swords (소드 8)
+A bound, blindfolded figure standing trapped among a cage of upright
+swords, a faint path visible beyond. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[swords-9.jpg] Nine of Swords (소드 9)
+A figure sitting up in bed with head in hands, nine swords mounted
+ominously on the wall behind, in a dark room. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[swords-10.jpg] Ten of Swords (소드 10)
+A fallen figure at dawn, a dark stormy sky giving way to a golden
+sunrise on the horizon. Mystical watercolor illustration, deep purple
+and gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[swords-11.jpg] Page of Swords (소드 페이지)
+A young figure standing on a windswept hill, holding a sword aloft,
+storm clouds swirling behind. Mystical watercolor illustration, deep
+purple and gold color palette, ethereal misty atmosphere, no text,
+portrait format, tarot card art.
+
+[swords-12.jpg] Knight of Swords (소드 기사)
+An armored rider charging forward on a galloping horse, sword raised
+high, storm clouds gathering behind. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[swords-13.jpg] Queen of Swords (소드 여왕)
+A stern, crowned woman seated on a throne among the clouds, one hand
+raised, sword held upright with clear resolve. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[swords-14.jpg] King of Swords (소드 왕)
+A crowned king seated on a throne, sword held upright, an expression
+of rational, unwavering authority. Mystical watercolor illustration,
+deep purple and gold color palette, ethereal misty atmosphere, no
+text, portrait format, tarot card art.
+
+====================================================
+■ PENTACLES (펜타클, 14장 — 흙 / 일·물질)
+====================================================
+
+[pentacles-1.jpg] Ace of Pentacles (펜타클 에이스)
+A hand emerging from clouds holding a single glowing coin above a
+flowering garden path. Mystical watercolor illustration, deep purple
+and gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[pentacles-2.jpg] Two of Pentacles (펜타클 2)
+A figure playfully balancing two coins connected by a flowing
+infinity ribbon, ships riding gentle waves behind. Mystical
+watercolor illustration, deep purple and gold color palette, ethereal
+misty atmosphere, no text, portrait format, tarot card art.
+
+[pentacles-3.jpg] Three of Pentacles (펜타클 3)
+A craftsman carefully carving an archway, two onlookers studying the
+detailed work. Mystical watercolor illustration, deep purple and gold
+color palette, ethereal misty atmosphere, no text, portrait format,
+tarot card art.
+
+[pentacles-4.jpg] Four of Pentacles (펜타클 4)
+A crowned figure clutching a coin tightly to their chest, coins
+resting beneath their feet, guarded and still. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[pentacles-5.jpg] Five of Pentacles (펜타클 5)
+Two weary figures trudging through falling snow past a glowing
+stained-glass window. Mystical watercolor illustration, deep purple
+and gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[pentacles-6.jpg] Six of Pentacles (펜타클 6)
+A generous figure weighing coins on a scale, distributing them to two
+kneeling figures below. Mystical watercolor illustration, deep purple
+and gold color palette, ethereal misty atmosphere, no text, portrait
+format, tarot card art.
+
+[pentacles-7.jpg] Seven of Pentacles (펜타클 7)
+A farmer resting on a hoe, thoughtfully studying a vine heavy with
+golden coins. Mystical watercolor illustration, deep purple and gold
+color palette, ethereal misty atmosphere, no text, portrait format,
+tarot card art.
+
+[pentacles-8.jpg] Eight of Pentacles (펜타클 8)
+A focused craftsman carefully engraving coins one by one in a quiet
+workshop. Mystical watercolor illustration, deep purple and gold
+color palette, ethereal misty atmosphere, no text, portrait format,
+tarot card art.
+
+[pentacles-9.jpg] Nine of Pentacles (펜타클 9)
+An elegant figure standing in a flourishing vineyard among glowing
+coins, a hooded falcon resting on one hand. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[pentacles-10.jpg] Ten of Pentacles (펜타클 10)
+A multigenerational family gathered beneath an archway with loyal
+hounds, coins arranged peacefully around them. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.
+
+[pentacles-11.jpg] Page of Pentacles (펜타클 페이지)
+A young figure standing in a green field, studying a coin held up
+thoughtfully before them. Mystical watercolor illustration, deep
+purple and gold color palette, ethereal misty atmosphere, no text,
+portrait format, tarot card art.
+
+[pentacles-12.jpg] Knight of Pentacles (펜타클 기사)
+An armored rider on a still, sturdy horse, holding a coin, a plowed
+field stretching behind. Mystical watercolor illustration, deep
+purple and gold color palette, ethereal misty atmosphere, no text,
+portrait format, tarot card art.
+
+[pentacles-13.jpg] Queen of Pentacles (펜타클 여왕)
+A crowned woman seated among flowers and small rabbits, gazing warmly
+at a coin resting in her lap. Mystical watercolor illustration, deep
+purple and gold color palette, ethereal misty atmosphere, no text,
+portrait format, tarot card art.
+
+[pentacles-14.jpg] King of Pentacles (펜타클 왕)
+A crowned king seated on a throne carved with grapevines, holding a
+coin, lush gardens and a distant castle behind. Mystical watercolor
+illustration, deep purple and gold color palette, ethereal misty
+atmosphere, no text, portrait format, tarot card art.

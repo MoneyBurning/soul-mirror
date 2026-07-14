@@ -1100,13 +1100,15 @@ const PENTACLES: TarotCard[] = [
   },
 ];
 
+// public/tarot/{id}.png 로 이미지를 두면 자동으로 연결됨 (파일이 없으면
+// components/TarotCard.tsx에서 이모지 엠블럼으로 자연스럽게 대체됨)
 export const TAROT_CARDS: TarotCard[] = [
   ...MAJOR_ARCANA,
   ...WANDS,
   ...CUPS,
   ...SWORDS,
   ...PENTACLES,
-];
+].map((card) => ({ ...card, imageUrl: `/tarot/${card.id}.png` }));
 
 export function getCardByName(name: string): TarotCard | undefined {
   return TAROT_CARDS.find((card) => card.name === name);
