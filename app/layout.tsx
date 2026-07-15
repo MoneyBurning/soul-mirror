@@ -8,8 +8,25 @@ import MobileNav from '@/components/MobileNav';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Soul Mirror',
-  description: 'AI 타로가 분석하는 당신의 삶',
+  title: 'Soul Mirror - AI 타로 리딩',
+  description: 'AI가 분석하는 나의 운세. 78장 타로카드로 오늘의 운을 확인하세요.',
+  openGraph: {
+    title: 'Soul Mirror - AI 타로 리딩',
+    description: 'AI가 분석하는 나의 운세. 78장 타로카드로 오늘의 운을 확인하세요.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Soul Mirror - AI 타로 리딩',
+    description: 'AI가 분석하는 나의 운세. 78장 타로카드로 오늘의 운을 확인하세요.',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function RootLayout({
