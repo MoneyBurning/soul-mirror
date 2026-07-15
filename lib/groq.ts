@@ -1,4 +1,5 @@
 import Groq, { RateLimitError } from 'groq-sdk';
+import { stripActionTipSection } from './format';
 
 const groqApiKey = process.env.GROQ_API_KEY;
 if (!groqApiKey) {
@@ -8,7 +9,9 @@ if (!groqApiKey) {
 const groq = new Groq({ apiKey: groqApiKey });
 
 const MODEL = 'llama-3.1-8b-instant';
-const MAX_TOKENS = 400;
+// 한국어는 토큰 효율이 낮아(문자당 여러 토큰), 300자 분량 응답 기준 400 토큰으로는
+// 문장 중간에 잘리는 경우가 있어 여유 있게 상향
+const MAX_TOKENS = 800;
 export const RATE_LIMIT_MESSAGE = '지금 AI 서버가 혼잡합니다. 잠시 후 다시 시도해주세요.';
 
 export const SYSTEM_PROMPT = `You are a professional tarot reader specializing in psychological insight.
@@ -118,10 +121,12 @@ ${cardsText}`;
     });
 
     const content = stripMarkdown(completion.choices[0]?.message?.content ?? '');
+    const actionTip = parseActionTip(content);
 
     return {
-      response: content,
-      actionTip: parseActionTip(content),
+      // 오늘의 행동은 하단 박스에 별도로 표시되므로 본문에서는 제거해 중복을 막는다.
+      response: stripActionTipSection(content),
+      actionTip,
     };
   } catch (err) {
     if (isRateLimitError(err)) {

@@ -8,6 +8,7 @@ import TarotCard from '@/components/TarotCard';
 import EmotionPicker from '@/components/EmotionPicker';
 import { getCardByName } from '@/lib/tarot-data';
 import { getSpreadDefinition } from '@/lib/spreads';
+import { stripActionTipSection } from '@/lib/format';
 import type { Category, Emotion, SpreadType, TarotCard as TarotCardData } from '@/types';
 
 const TYPEWRITER_DURATION_MS = 2000;
@@ -183,9 +184,12 @@ function ResultContent() {
     };
   }, [authState, readingId]);
 
-  const typedText = useTypewriter(reading?.aiResponse ?? '', !isLoading && reading !== null);
+  // "오늘의 행동"은 하단 박스에 별도로 표시되므로, 본문에는 그 앞부분만 노출한다.
+  // (기존에 저장된 리딩의 ai_response에도 남아있을 수 있어 화면에서도 한 번 더 제거)
+  const displayText = reading ? stripActionTipSection(reading.aiResponse) : '';
+  const typedText = useTypewriter(displayText, !isLoading && reading !== null);
   const isTypingComplete =
-    reading !== null && reading.aiResponse.length > 0 && typedText.length >= reading.aiResponse.length;
+    reading !== null && displayText.length > 0 && typedText.length >= displayText.length;
 
   async function handleSaveEmotion() {
     if (!emotion || !reading || isSaving) return;
