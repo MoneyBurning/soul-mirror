@@ -59,6 +59,7 @@ export async function checkRateLimit(
 }
 
 // 오늘(UTC 기준) 생성된 리딩 수
+// Daily Card(spread_type = 'daily')는 별도 카운트이므로 여기서 제외한다.
 export async function getDailyReadingCount(userId: string): Promise<number> {
   const admin = getSupabaseAdmin();
   const now = new Date();
@@ -70,6 +71,7 @@ export async function getDailyReadingCount(userId: string): Promise<number> {
     .from('readings')
     .select('id', { count: 'exact', head: true })
     .eq('user_id', userId)
+    .neq('spread_type', 'daily')
     .gte('created_at', startOfDayUTC);
 
   if (error) throw error;
