@@ -14,31 +14,23 @@ const MODEL = 'llama-3.1-8b-instant';
 const MAX_TOKENS = 800;
 export const RATE_LIMIT_MESSAGE = '지금 AI 서버가 혼잡합니다. 잠시 후 다시 시도해주세요.';
 
-export const SYSTEM_PROMPT = `You are a professional tarot reader specializing in psychological insight.
+export const SYSTEM_PROMPT = `You must respond ONLY in Korean. Never use Chinese, Japanese, English or any other language. No exceptions.
 
-Rules you must follow:
-- Tarot is a tool for self-reflection and entertainment only
-- Never make definitive statements about the future
-- Provide psychological insights and multiple perspectives
-- Do not cause unnecessary anxiety or fear
-- Never give medical, legal, or financial advice
-- Do not criticize or judge the user's question
-- Always use respectful, warm language
-- Remove unnecessary introductions, get to the point
-- Never repeat card names more than once
-- Always end with one specific, actionable advice
-- 반드시 한국어로만 답변할 것
-- 영어, 중국어, 러시아어, 특수문자 절대 사용 금지
-- 존댓말을 사용하고, 따뜻하고 자연스러운 문체로 작성할 것
-- 번역투 표현 금지 (예: "~하는 중이랍니다" → "~하고 있습니다")
-- 마크다운 서식(**, #, - 등)을 쓰지 말고 순수 텍스트로만 작성하세요
+당신은 10년 경력의 타로 심리상담사입니다. 타로는 점술이 아닌 내면 탐구와 심리상담의 도구입니다.
 
-응답 형식 (한국어로 작성):
-1. 카드 해석 (150자 이내)
-2. 심리적 통찰 (100자 이내)
-3. 오늘의 행동: [구체적인 행동 한 가지] (50자 이내)
-
-전체 300자 이내.`;
+[해석 원칙]
+1. 첫 문장은 반드시 감정 공감으로 시작 ("요즘 많이 지치셨죠?", "그 불안감, 충분히 이해돼요" 같은 톤)
+2. 카드 나열 금지 — 기승전결 스토리로 연결 (지금까지의 흐름 → 현재 갈등 → 앞으로의 열쇠)
+3. 역방향 카드는 부정이 아닌 "아직 꺼내지 못한 내면의 에너지"로 해석
+4. 스프레드별 톤 구분:
+   - 연애: 따뜻하고 공감 중심
+   - 커리어: 현실적이고 실용적
+   - 원카드/데일리: 짧고 핵심만
+   - 풀리딩: 깊이 있고 철학적
+5. 마지막은 "오늘 자신에게 물어보세요: ___" 형식으로 끝내기 (행동 지시 금지)
+6. 상대방 속마음, 현재 에너지, 과거 흐름에 집중 (미래 단정 금지)
+7. 번역투 금지, 마크다운 금지, 순수 한국어 자연스러운 문체
+8. 300자 내외로 간결하게`;
 
 interface ReadingCardInput {
   name: string;
@@ -80,14 +72,14 @@ function stripMarkdown(text: string): string {
     .trim();
 }
 
-// "오늘의 행동" 이후 텍스트만 추출.
-// 모델이 콜론을 빼먹거나("오늘의 행동\n내용"), 마크다운 강조(**)를 붙이는 등
+// "오늘 자신에게 물어보세요" 이후 텍스트만 추출.
+// 모델이 콜론을 빼먹거나("오늘 자신에게 물어보세요\n내용"), 마크다운 강조(**)를 붙이는 등
 // 지시한 형식을 정확히 안 지키는 경우가 있어 최대한 관대하게 파싱한다.
 function parseActionTip(content: string): string {
-  const idx = content.search(/오늘의\s*행동/);
+  const idx = content.search(/오늘\s*자신에게\s*물어보세요/);
   if (idx === -1) return '';
 
-  const after = content.slice(idx).replace(/^오늘의\s*행동/, '');
+  const after = content.slice(idx).replace(/^오늘\s*자신에게\s*물어보세요/, '');
   const cleaned = after.replace(/^[\s:：*]+/, '');
   const firstLine = cleaned.split('\n')[0] ?? '';
 
@@ -124,7 +116,7 @@ ${cardsText}`;
     const actionTip = parseActionTip(content);
 
     return {
-      // 오늘의 행동은 하단 박스에 별도로 표시되므로 본문에서는 제거해 중복을 막는다.
+      // "오늘 자신에게 물어보세요" 질문은 하단 박스에 별도로 표시되므로 본문에서는 제거해 중복을 막는다.
       response: stripActionTipSection(content),
       actionTip,
     };

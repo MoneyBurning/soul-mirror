@@ -4,11 +4,11 @@ export function getReadingSnippet(aiResponse: string, maxLength = 50): string {
   return firstLine.length > maxLength ? `${firstLine.slice(0, maxLength)}...` : firstLine;
 }
 
-// AI 응답 본문에서 "오늘의 행동" 섹션을 제거.
+// AI 응답 본문에서 "오늘 자신에게 물어보세요" 섹션을 제거.
 // 결과 페이지가 이 섹션을 하단 박스에 별도로 보여주기 때문에, 본문에 그대로 남아있으면
 // 같은 내용이 두 번 표시된다.
 export function stripActionTipSection(aiResponse: string): string {
-  return aiResponse.replace(/\n\s*\d*\.?\s*오늘의\s*행동[\s\S]*$/, '').trim();
+  return aiResponse.replace(/\n\s*오늘\s*자신에게\s*물어보세요[\s\S]*$/, '').trim();
 }
 
 // "7월 13일" 형태의 짧은 날짜 표기
