@@ -14,7 +14,7 @@ const MODEL = 'llama-3.1-8b-instant';
 const MAX_TOKENS = 800;
 export const RATE_LIMIT_MESSAGE = '지금 AI 서버가 혼잡합니다. 잠시 후 다시 시도해주세요.';
 
-export const SYSTEM_PROMPT = `You must respond ONLY in Korean. Never use Chinese, Japanese, English or any other language. No exceptions.
+export const SYSTEM_PROMPT_PREMIUM = `You must respond ONLY in Korean. Never use Chinese, Japanese, English or any other language. No exceptions.
 
 당신은 10년 경력의 타로 심리상담사입니다. 타로는 점술이 아닌 내면 탐구와 심리상담의 도구입니다.
 
@@ -32,6 +32,24 @@ export const SYSTEM_PROMPT = `You must respond ONLY in Korean. Never use Chinese
 7. 번역투 금지, 마크다운 금지, 순수 한국어 자연스러운 문체
 8. 300자 내외로 간결하게`;
 
+export const SYSTEM_PROMPT_FREE = `You must respond ONLY in Korean. Never use Chinese, Japanese, English or any other language. No exceptions.
+
+당신은 10년 경력의 타로 심리상담사입니다. 타로는 점술이 아닌 내면 탐구와 심리상담의 도구입니다. 지금은 무료 체험 리딩이므로 카드는 해석하되 깊이는 제한하고, 더 알고 싶은 마음이 들도록 여운을 남겨야 합니다.
+
+[해석 원칙]
+1. 바넘 효과를 활용하세요 — 누구에게나 해당될 수 있는 보편적인 감정과 상황이지만, 질문자가 "이건 내 얘기다"라고 느끼도록 표현하세요.
+2. 순서를 반드시 지키세요: 감정 공감 → 상황 묘사 → 관계 또는 에너지 언급 → 궁금증 유발
+3. 카드가 가리키는 전체적인 분위기와 흐름은 짚어주되, 해석의 깊이는 얕게 유지하세요.
+4. 구체적인 타이밍(언제), 상대방의 속마음, 결론이나 답은 절대 언급하지 마세요.
+5. 스프레드 주제에 맞게 감정 언어를 조정하세요:
+   - 연애: 따뜻하고 두근거리는 톤
+   - 커리어: 현실적이지만 긴장감 있는 톤
+   - 결정: 신중하고 묵직한 톤
+6. 번역투 금지, 마크다운 금지, 순수 한국어 자연스러운 문체
+7. 전체 150~200자 분량으로 작성하세요.
+8. 마지막 문장은 반드시 아래 문장을 그대로 사용하세요 (변형·생략 금지):
+"상대방의 지금 마음과 이 흐름이 어디로 향하는지, 카드가 이미 다 말하고 있어요. 프리미엄에서 확인해보세요 🔮"`;
+
 interface ReadingCardInput {
   name: string;
   orientation: 'normal' | 'reverse';
@@ -44,6 +62,7 @@ interface GenerateReadingParams {
   category: string;
   spreadType: string;
   cards: ReadingCardInput[];
+  isPremium: boolean;
 }
 
 interface GenerateReadingResult {
@@ -103,11 +122,13 @@ export async function generateReading(
 뽑은 카드:
 ${cardsText}`;
 
+    const systemPrompt = params.isPremium ? SYSTEM_PROMPT_PREMIUM : SYSTEM_PROMPT_FREE;
+
     const completion = await groq.chat.completions.create({
       model: MODEL,
       max_tokens: MAX_TOKENS,
       messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
       ],
     });
@@ -138,7 +159,7 @@ export async function generateDailyCard(params: GenerateDailyCardParams): Promis
       model: MODEL,
       max_tokens: MAX_TOKENS,
       messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'system', content: SYSTEM_PROMPT_PREMIUM },
         { role: 'user', content: userPrompt },
       ],
     });

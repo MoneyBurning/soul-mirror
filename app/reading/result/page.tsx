@@ -101,6 +101,8 @@ function ResultContent() {
   const [captureError, setCaptureError] = useState<string | null>(null);
   const [linkCopied, setLinkCopied] = useState(false);
 
+  const [isPremium, setIsPremium] = useState(false);
+
   const captureRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -120,6 +122,28 @@ function ResultContent() {
       cancelled = true;
     };
   }, [router]);
+
+  // 프리미엄 여부 조회 (무료 유저에게만 업그레이드 CTA를 보여주기 위함)
+  useEffect(() => {
+    if (authState !== 'ready') return;
+
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const res = await fetch('/api/reading');
+        if (cancelled || !res.ok) return;
+        const data = await res.json();
+        setIsPremium(Boolean(data.isPremium));
+      } catch (err) {
+        console.error('fetch isPremium error:', err);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [authState]);
 
   useEffect(() => {
     if (authState !== 'ready') return;
@@ -365,6 +389,18 @@ function ResultContent() {
             >
               {isSaving ? '저장 중...' : '감정 저장'}
             </button>
+          </section>
+        )}
+
+        {/* 프리미엄 업그레이드 CTA (무료 유저에게만 노출) */}
+        {isTypingComplete && !isPremium && (
+          <section className="flex justify-center">
+            <Link
+              href="/premium"
+              className="rounded-full bg-gradient-to-r from-amber-400 to-amber-300 px-6 py-3 text-sm font-semibold text-purple-950 shadow-lg shadow-amber-400/20 transition-transform hover:scale-105"
+            >
+              🔮 프리미엄으로 전체 리딩 보기
+            </Link>
           </section>
         )}
 

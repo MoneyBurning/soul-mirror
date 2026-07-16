@@ -130,6 +130,7 @@ export async function POST(request: NextRequest) {
           position: rc.position,
           positionLabel: spreadDefinition?.positions?.[rc.position - 1],
         })),
+        isPremium,
       });
     } catch (err) {
       console.error('generateReading error:', err instanceof Error ? err.message : err);
